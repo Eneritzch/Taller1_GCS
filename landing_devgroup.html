@@ -1,123 +1,608 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevGroup | Código que Conecta</title>
+  <meta name="description" content="Grupo de programación especializado en Django, React y Tailwind CSS. Construyendo el futuro digital.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #050508;
+      --bg-card: #0d0d15;
+      --primary: #7c3aed;
+      --primary-glow: rgba(124, 58, 237, 0.4);
+      --accent-orange: #f97316;
+      --accent-blue: #3b82f6;
+      --text-main: #f0f0f5;
+      --text-muted: #94a3b8;
+      --border: rgba(255, 255, 255, 0.08);
+      --glass: rgba(255, 255, 255, 0.03);
+      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Syne:wght@700;800&display=swap');
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#0d0d1a;font-family:'Space Grotesk',sans-serif;color:#f0eeff;min-height:100vh;overflow-x:hidden}
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;padding:2rem;text-align:center;background:linear-gradient(135deg,#0d0d1a 0%,#1a0a2e 40%,#0d0d1a 100%)}
-.blob1{position:absolute;top:-80px;left:-80px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,#7c3aed55 0%,transparent 70%);pointer-events:none}
-.blob2{position:absolute;bottom:-60px;right:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,#f97316aa 0%,transparent 70%);pointer-events:none}
-.blob3{position:absolute;top:40%;left:60%;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,#2563eb55 0%,transparent 70%);pointer-events:none}
-.badge{display:inline-flex;align-items:center;gap:6px;background:#ffffff12;border:1px solid #f9731640;color:#fb923c;font-size:12px;font-weight:600;padding:6px 14px;border-radius:999px;margin-bottom:1.5rem;letter-spacing:.06em;text-transform:uppercase}
-.badge span{width:6px;height:6px;border-radius:50%;background:#f97316;display:inline-block;animation:pulse 1.5s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
-h1{font-family:'Syne',sans-serif;font-size:clamp(2.4rem,7vw,5rem);font-weight:800;line-height:1.05;margin-bottom:1rem}
-h1 .naranja{color:#f97316}
-h1 .morado{color:#a855f7}
-h1 .azul{color:#3b82f6}
-.sub{font-size:1.05rem;color:#b8b0d0;max-width:520px;line-height:1.7;margin-bottom:2.5rem}
-.cta{display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center}
-.btn-primary{background:linear-gradient(135deg,#7c3aed,#f97316);color:#fff;padding:13px 28px;border-radius:10px;font-weight:600;font-size:.95rem;border:none;cursor:pointer;transition:opacity .2s}
-.btn-primary:hover{opacity:.85}
-.btn-sec{background:transparent;color:#d4c8ff;padding:12px 28px;border-radius:10px;font-weight:600;font-size:.95rem;border:1.5px solid #7c3aed80;cursor:pointer;transition:background .2s}
-.btn-sec:hover{background:#7c3aed20}
-.tech{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:3.5rem}
-.tech-pill{background:#ffffff09;border:1px solid #ffffff18;padding:7px 16px;border-radius:999px;font-size:.78rem;font-weight:600;letter-spacing:.04em;color:#c4baed}
-.tech-pill.dj{border-color:#44d26640;color:#6ee7a0}
-.tech-pill.tw{border-color:#38bdf840;color:#7dd3fc}
-.tech-pill.re{border-color:#61dafb40;color:#93c5fd}
-.divider{width:100%;padding:0 1.5rem;max-width:900px;margin:0 auto}
-.section{padding:4rem 1.5rem;max-width:900px;margin:0 auto}
-.section-title{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;text-align:center;margin-bottom:.5rem}
-.section-sub{text-align:center;color:#9d92c4;font-size:.95rem;margin-bottom:2.5rem}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem}
-.card{background:#13102a;border:1px solid #ffffff14;border-radius:16px;padding:1.5rem;transition:border-color .2s,transform .2s}
-.card:hover{border-color:#7c3aed50;transform:translateY(-4px)}
-.avatar{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;margin-bottom:1rem}
-.av-d{background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff}
-.av-j{background:linear-gradient(135deg,#f97316,#fb923c);color:#fff}
-.av-r{background:linear-gradient(135deg,#2563eb,#3b82f6);color:#fff}
-.card h3{font-size:1rem;font-weight:700;margin-bottom:.3rem}
-.card p{font-size:.83rem;color:#8b82b0;line-height:1.6}
-.role{display:inline-block;font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:999px;margin-bottom:.6rem}
-.role-m{background:#7c3aed22;color:#c084fc;border:1px solid #7c3aed40}
-.role-o{background:#f9731622;color:#fb923c;border:1px solid #f9731640}
-.role-b{background:#2563eb22;color:#93c5fd;border:1px solid #2563eb40}
-.stack{padding:2rem 1.5rem 4rem;max-width:900px;margin:0 auto}
-.stack-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem}
-.stack-item{background:#13102a;border:1px solid #ffffff10;border-radius:12px;padding:1rem 1.2rem;display:flex;align-items:center;gap:10px}
-.stack-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
-.si-dj{background:#44d26620}
-.si-tw{background:#38bdf820}
-.si-re{background:#61dafb20}
-.stack-item p{font-size:.82rem;font-weight:600;color:#c4baed}
-.stack-item span{font-size:.72rem;color:#7069a0}
-footer{text-align:center;padding:2rem 1rem;border-top:1px solid #ffffff0d;color:#6b6485;font-size:.8rem}
-.hl{color:#f97316}
-</style>
-<h2 class="sr-only">Landing page del grupo de programación con Django, Tailwind y React, integrado por Dulce, Jaione y Ronny.</h2>
-<div class="hero">
-  <div class="blob1"></div>
-  <div class="blob2"></div>
-  <div class="blob3"></div>
-  <div class="badge"><span></span> Grupo de programación</div>
-  <h1>Código que <span class="morado">conecta</span>,<br>ideas que <span class="naranja">encienden</span>,<br>futuro <span class="azul">digital</span></h1>
-  <p class="sub">Somos estudiantes de Software construyendo soluciones reales con tecnologías modernas. Creatividad, colaboración y mucho código.</p>
-  <div class="cta">
-    <button class="btn-primary">Ver proyectos</button>
-    <button class="btn-sec">Conócenos</button>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+
+    /* --- Background Effects --- */
+    .aura-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 50%, #0a0a1a 0%, #050508 100%);
+    }
+
+    .aura {
+      position: absolute;
+      width: 60vw;
+      height: 60vw;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.15;
+      animation: float 20s infinite alternate ease-in-out;
+    }
+
+    .aura-1 { background: var(--primary); top: -10%; left: -10%; }
+    .aura-2 { background: var(--accent-orange); bottom: -10%; right: -10%; animation-delay: -5s; }
+    .aura-3 { background: var(--accent-blue); top: 40%; left: 60%; animation-delay: -10s; }
+
+    @keyframes float {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(5%, 5%) scale(1.1); }
+      100% { transform: translate(-2%, 3%) scale(0.9); }
+    }
+
+    /* --- Layout --- */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section {
+      padding: 8rem 0;
+      position: relative;
+    }
+
+    /* --- Hero Section --- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding-top: 4rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      padding: 0.5rem 1rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-orange);
+      margin-bottom: 2rem;
+      backdrop-filter: blur(10px);
+      animation: fadeInDown 0.8s backwards;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-orange);
+      box-shadow: 0 0 10px var(--accent-orange);
+      animation: pulse 2s infinite;
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.5rem, 8vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+      animation: fadeInUp 1s 0.2s backwards;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #fff 30%, rgba(255,255,255,0.4) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-muted);
+      max-width: 600px;
+      margin-bottom: 3rem;
+      animation: fadeInUp 1s 0.4s backwards;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 1rem;
+      animation: fadeInUp 1s 0.6s backwards;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 10px 20px -5px var(--primary-glow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px -5px var(--primary-glow);
+      filter: brightness(1.1);
+    }
+
+    .btn-secondary {
+      background: var(--glass);
+      color: #fff;
+      border: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    /* --- Tech Pills --- */
+    .tech-tags {
+      margin-top: 5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      animation: fadeInUp 1s 0.8s backwards;
+    }
+
+    .tech-pill {
+      padding: 0.6rem 1.2rem;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .tech-pill:hover {
+      border-color: var(--primary);
+      color: #fff;
+      background: rgba(124, 58, 237, 0.1);
+      transform: translateY(-2px);
+    }
+
+    /* --- Team Section --- */
+    .section-header {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+
+    .section-header h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .member-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+      border-radius: 24px;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .member-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary) 0%, transparent 40%);
+      opacity: 0;
+      transition: var(--transition);
+      pointer-events: none;
+    }
+
+    .member-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(124, 58, 237, 0.3);
+      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
+    }
+
+    .member-card:hover::before {
+      opacity: 0.1;
+    }
+
+    .member-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      border: 2px solid var(--border);
+    }
+
+    .member-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .member-role {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.05);
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .member-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .member-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* --- Stack Section --- */
+    .stack-section {
+      background: rgba(255,255,255,0.01);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .stack-item {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      padding: 1.5rem;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      transition: var(--transition);
+    }
+
+    .stack-item:hover {
+      border-color: rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.05);
+      transform: scale(1.02);
+    }
+
+    .stack-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .stack-info h4 {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .stack-info span {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* --- Notification Toast --- */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--primary);
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* --- Footer --- */
+    footer {
+      padding: 4rem 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .footer-line {
+      width: 40px;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .highlight {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* --- Animations --- */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.5; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @media (max-width: 768px) {
+      section { padding: 5rem 0; }
+      h1 { font-size: 3rem; }
+      .team-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="aura-container">
+    <div class="aura aura-1"></div>
+    <div class="aura aura-2"></div>
+    <div class="aura aura-3"></div>
   </div>
-  <div class="tech">
-    <span class="tech-pill dj">Django</span>
-    <span class="tech-pill tw">Tailwind CSS</span>
-    <span class="tech-pill re">React</span>
-    <span class="tech-pill">Python</span>
-    <span class="tech-pill">REST API</span>
-  </div>
-</div>
-<div class="section">
-  <p class="section-title">El equipo</p>
-  <p class="section-sub">Tres devs, una visión, infinitas líneas de código</p>
-  <div class="cards">
-    <div class="card">
-      <div class="avatar av-d">DJ</div>
-      <span class="role role-m">Frontend</span>
-      <h3>Dulce</h3>
-      <p>Apasionada por crear interfaces bonitas y funcionales. Tailwind y React son sus mejores aliados.</p>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero container">
+      <div class="badge">
+        <div class="badge-dot"></div>
+        Grupo de Programación
+      </div>
+      <h1>
+        <span class="gradient-text">Código que conecta,</span><br>
+        <span class="gradient-text">ideas que encienden.</span>
+      </h1>
+      <p class="hero-sub">
+        Somos un equipo de ingeniería transformando conceptos complejos en experiencias digitales excepcionales.
+      </p>
+      <div class="cta-group">
+        <button id="btn-proyectos" class="btn btn-primary">Ver Proyectos</button>
+        <a href="#equipo" class="btn btn-secondary">Conócenos</a>
+      </div>
+
+      <div class="tech-tags">
+        <span class="tech-pill">Django</span>
+        <span class="tech-pill">React</span>
+        <span class="tech-pill">Tailwind CSS</span>
+        <span class="tech-pill">Python</span>
+        <span class="tech-pill">PostgreSQL</span>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="equipo" class="container">
+      <div class="section-header">
+        <h2>El Equipo</h2>
+        <p>Tres mentes, una visión, infinitas posibilidades.</p>
+      </div>
+      <div class="team-grid">
+        <!-- Dulce -->
+        <div class="member-card">
+          <div class="member-avatar">
+            <img src="assets/avatar_dulce_1777046317403.png" alt="Dulce">
+          </div>
+          <span class="member-role">Frontend Specialist</span>
+          <h3>Dulce</h3>
+          <p>Mujer, blanquita, con cabello corto y lentes. Arquitecta de interfaces que aporta una perspectiva única e inclusiva al desarrollo con React.</p>
+        </div>
+        <!-- Jaione -->
+        <div class="member-card">
+          <div class="member-avatar">
+            <img src="assets/avatar_jaione_1777046354527.png" alt="Jaione">
+          </div>
+          <span class="member-role">Fullstack Engineer</span>
+          <h3>Jaione</h3>
+          <p>Chica alta, blanca, con cabello rojizo y lentes. El puente entre frontend y backend, experta en arquitecturas Django integradas.</p>
+        </div>
+        <!-- Ronny -->
+        <div class="member-card">
+          <div class="member-avatar">
+            <img src="assets/avatar_ronny_1777046445343.png" alt="Ronny">
+          </div>
+          <span class="member-role">Backend Architect</span>
+          <h3>Ronny</h3>
+          <p>Hombre alto, blanco, con cabello ondulado corto. Especialista en sistemas robustos y, además, el compañero de vida de Jaione.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stack Section -->
+    <section id="stack" class="stack-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 style="font-size: 2rem; margin-top: 2rem;">Nuestro Stack</h2>
+          <p>Herramientas de grado industrial para soluciones modernas.</p>
+        </div>
+        <div class="stack-grid" style="margin-bottom: 2rem;">
+          <div class="stack-item">
+            <div class="stack-icon">🐍</div>
+            <div class="stack-info">
+              <h4>Django</h4>
+              <span>Backend & Security</span>
+            </div>
+          </div>
+          <div class="stack-item">
+            <div class="stack-icon">⚛️</div>
+            <div class="stack-info">
+              <h4>React</h4>
+              <span>Dynamic Interfaces</span>
+            </div>
+          </div>
+          <div class="stack-item">
+            <div class="stack-icon">💨</div>
+            <div class="stack-info">
+              <h4>Tailwind</h4>
+              <span>Modern Styling</span>
+            </div>
+          </div>
+          <div class="stack-item">
+            <div class="stack-icon">⚡</div>
+            <div class="stack-info">
+              <h4>REST API</h4>
+              <span>Seamless Integration</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <div class="footer-content">
+      <div class="footer-line"></div>
+      <p>Hecho con pasión por <span class="highlight">DevGroup</span></p>
+      <p style="font-size: 0.8rem; opacity: 0.6;">© 2024 · Estudiantes de Ingeniería en Software</p>
     </div>
-    <div class="card">
-      <div class="avatar av-j">JA</div>
-      <span class="role role-o">Fullstack</span>
-      <h3>Jaione</h3>
-      <p>Conecta el frontend con el backend sin perder el estilo. Django + React en perfecta armonía.</p>
-    </div>
-    <div class="card">
-      <div class="avatar av-r">RO</div>
-      <span class="role role-b">Backend</span>
-      <h3>Ronny</h3>
-      <p>Arquitecto de APIs y bases de datos. Si hay un bug, Ronny ya lo está cazando con Django.</p>
-    </div>
-  </div>
-</div>
-<div class="stack">
-  <p class="section-title" style="text-align:center;font-family:Syne,sans-serif;font-size:1.4rem;font-weight:800;margin-bottom:.4rem">Nuestro stack</p>
-  <p class="section-sub" style="text-align:center;color:#9d92c4;font-size:.9rem;margin-bottom:1.5rem">Las herramientas con las que construimos</p>
-  <div class="stack-grid">
-    <div class="stack-item">
-      <div class="stack-icon si-dj">🐍</div>
-      <div><p>Django</p><span>Backend & APIs</span></div>
-    </div>
-    <div class="stack-item">
-      <div class="stack-icon si-tw">💨</div>
-      <div><p>Tailwind CSS</p><span>Estilos modernos</span></div>
-    </div>
-    <div class="stack-item">
-      <div class="stack-icon si-re">⚛️</div>
-      <div><p>React</p><span>UI dinámica</span></div>
-    </div>
-    <div class="stack-item">
-      <div class="stack-icon" style="background:#f9731620">🔌</div>
-      <div><p>REST API</p><span>Integración</span></div>
-    </div>
-  </div>
-</div>
-<footer>Hecho con 💜 por <span class="hl">Dulce, Jaione & Ronny</span> · Estudiantes de Ingeniería en Software</footer>
+  </footer>
+
+  <div id="toast" class="toast">¡Próximamente! Estamos construyendo nuestros proyectos. 🚀</div>
+
+  <script>
+    // Smooth scroll para los links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Funcionalidad para el botón de Proyectos
+    const btnProyectos = document.getElementById('btn-proyectos');
+    const toast = document.getElementById('toast');
+
+    btnProyectos.addEventListener('click', () => {
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    });
+
+    // Efecto de hover en Tech Pills
+    document.querySelectorAll('.tech-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        pill.style.transform = 'scale(1.1) rotate(5deg)';
+        setTimeout(() => {
+          pill.style.transform = 'scale(1) rotate(0deg)';
+        }, 300);
+      });
+    });
+  </script>
+
+</body>
+</html>
