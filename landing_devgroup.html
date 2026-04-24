@@ -1,0 +1,123 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Syne:wght@700;800&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0d0d1a;font-family:'Space Grotesk',sans-serif;color:#f0eeff;min-height:100vh;overflow-x:hidden}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;padding:2rem;text-align:center;background:linear-gradient(135deg,#0d0d1a 0%,#1a0a2e 40%,#0d0d1a 100%)}
+.blob1{position:absolute;top:-80px;left:-80px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,#7c3aed55 0%,transparent 70%);pointer-events:none}
+.blob2{position:absolute;bottom:-60px;right:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,#f97316aa 0%,transparent 70%);pointer-events:none}
+.blob3{position:absolute;top:40%;left:60%;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,#2563eb55 0%,transparent 70%);pointer-events:none}
+.badge{display:inline-flex;align-items:center;gap:6px;background:#ffffff12;border:1px solid #f9731640;color:#fb923c;font-size:12px;font-weight:600;padding:6px 14px;border-radius:999px;margin-bottom:1.5rem;letter-spacing:.06em;text-transform:uppercase}
+.badge span{width:6px;height:6px;border-radius:50%;background:#f97316;display:inline-block;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+h1{font-family:'Syne',sans-serif;font-size:clamp(2.4rem,7vw,5rem);font-weight:800;line-height:1.05;margin-bottom:1rem}
+h1 .naranja{color:#f97316}
+h1 .morado{color:#a855f7}
+h1 .azul{color:#3b82f6}
+.sub{font-size:1.05rem;color:#b8b0d0;max-width:520px;line-height:1.7;margin-bottom:2.5rem}
+.cta{display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.btn-primary{background:linear-gradient(135deg,#7c3aed,#f97316);color:#fff;padding:13px 28px;border-radius:10px;font-weight:600;font-size:.95rem;border:none;cursor:pointer;transition:opacity .2s}
+.btn-primary:hover{opacity:.85}
+.btn-sec{background:transparent;color:#d4c8ff;padding:12px 28px;border-radius:10px;font-weight:600;font-size:.95rem;border:1.5px solid #7c3aed80;cursor:pointer;transition:background .2s}
+.btn-sec:hover{background:#7c3aed20}
+.tech{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:3.5rem}
+.tech-pill{background:#ffffff09;border:1px solid #ffffff18;padding:7px 16px;border-radius:999px;font-size:.78rem;font-weight:600;letter-spacing:.04em;color:#c4baed}
+.tech-pill.dj{border-color:#44d26640;color:#6ee7a0}
+.tech-pill.tw{border-color:#38bdf840;color:#7dd3fc}
+.tech-pill.re{border-color:#61dafb40;color:#93c5fd}
+.divider{width:100%;padding:0 1.5rem;max-width:900px;margin:0 auto}
+.section{padding:4rem 1.5rem;max-width:900px;margin:0 auto}
+.section-title{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;text-align:center;margin-bottom:.5rem}
+.section-sub{text-align:center;color:#9d92c4;font-size:.95rem;margin-bottom:2.5rem}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem}
+.card{background:#13102a;border:1px solid #ffffff14;border-radius:16px;padding:1.5rem;transition:border-color .2s,transform .2s}
+.card:hover{border-color:#7c3aed50;transform:translateY(-4px)}
+.avatar{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;margin-bottom:1rem}
+.av-d{background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff}
+.av-j{background:linear-gradient(135deg,#f97316,#fb923c);color:#fff}
+.av-r{background:linear-gradient(135deg,#2563eb,#3b82f6);color:#fff}
+.card h3{font-size:1rem;font-weight:700;margin-bottom:.3rem}
+.card p{font-size:.83rem;color:#8b82b0;line-height:1.6}
+.role{display:inline-block;font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:999px;margin-bottom:.6rem}
+.role-m{background:#7c3aed22;color:#c084fc;border:1px solid #7c3aed40}
+.role-o{background:#f9731622;color:#fb923c;border:1px solid #f9731640}
+.role-b{background:#2563eb22;color:#93c5fd;border:1px solid #2563eb40}
+.stack{padding:2rem 1.5rem 4rem;max-width:900px;margin:0 auto}
+.stack-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem}
+.stack-item{background:#13102a;border:1px solid #ffffff10;border-radius:12px;padding:1rem 1.2rem;display:flex;align-items:center;gap:10px}
+.stack-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.si-dj{background:#44d26620}
+.si-tw{background:#38bdf820}
+.si-re{background:#61dafb20}
+.stack-item p{font-size:.82rem;font-weight:600;color:#c4baed}
+.stack-item span{font-size:.72rem;color:#7069a0}
+footer{text-align:center;padding:2rem 1rem;border-top:1px solid #ffffff0d;color:#6b6485;font-size:.8rem}
+.hl{color:#f97316}
+</style>
+<h2 class="sr-only">Landing page del grupo de programación con Django, Tailwind y React, integrado por Dulce, Jaione y Ronny.</h2>
+<div class="hero">
+  <div class="blob1"></div>
+  <div class="blob2"></div>
+  <div class="blob3"></div>
+  <div class="badge"><span></span> Grupo de programación</div>
+  <h1>Código que <span class="morado">conecta</span>,<br>ideas que <span class="naranja">encienden</span>,<br>futuro <span class="azul">digital</span></h1>
+  <p class="sub">Somos estudiantes de Software construyendo soluciones reales con tecnologías modernas. Creatividad, colaboración y mucho código.</p>
+  <div class="cta">
+    <button class="btn-primary">Ver proyectos</button>
+    <button class="btn-sec">Conócenos</button>
+  </div>
+  <div class="tech">
+    <span class="tech-pill dj">Django</span>
+    <span class="tech-pill tw">Tailwind CSS</span>
+    <span class="tech-pill re">React</span>
+    <span class="tech-pill">Python</span>
+    <span class="tech-pill">REST API</span>
+  </div>
+</div>
+<div class="section">
+  <p class="section-title">El equipo</p>
+  <p class="section-sub">Tres devs, una visión, infinitas líneas de código</p>
+  <div class="cards">
+    <div class="card">
+      <div class="avatar av-d">DJ</div>
+      <span class="role role-m">Frontend</span>
+      <h3>Dulce</h3>
+      <p>Apasionada por crear interfaces bonitas y funcionales. Tailwind y React son sus mejores aliados.</p>
+    </div>
+    <div class="card">
+      <div class="avatar av-j">JA</div>
+      <span class="role role-o">Fullstack</span>
+      <h3>Jaione</h3>
+      <p>Conecta el frontend con el backend sin perder el estilo. Django + React en perfecta armonía.</p>
+    </div>
+    <div class="card">
+      <div class="avatar av-r">RO</div>
+      <span class="role role-b">Backend</span>
+      <h3>Ronny</h3>
+      <p>Arquitecto de APIs y bases de datos. Si hay un bug, Ronny ya lo está cazando con Django.</p>
+    </div>
+  </div>
+</div>
+<div class="stack">
+  <p class="section-title" style="text-align:center;font-family:Syne,sans-serif;font-size:1.4rem;font-weight:800;margin-bottom:.4rem">Nuestro stack</p>
+  <p class="section-sub" style="text-align:center;color:#9d92c4;font-size:.9rem;margin-bottom:1.5rem">Las herramientas con las que construimos</p>
+  <div class="stack-grid">
+    <div class="stack-item">
+      <div class="stack-icon si-dj">🐍</div>
+      <div><p>Django</p><span>Backend & APIs</span></div>
+    </div>
+    <div class="stack-item">
+      <div class="stack-icon si-tw">💨</div>
+      <div><p>Tailwind CSS</p><span>Estilos modernos</span></div>
+    </div>
+    <div class="stack-item">
+      <div class="stack-icon si-re">⚛️</div>
+      <div><p>React</p><span>UI dinámica</span></div>
+    </div>
+    <div class="stack-item">
+      <div class="stack-icon" style="background:#f9731620">🔌</div>
+      <div><p>REST API</p><span>Integración</span></div>
+    </div>
+  </div>
+</div>
+<footer>Hecho con 💜 por <span class="hl">Dulce, Jaione & Ronny</span> · Estudiantes de Ingeniería en Software</footer>
